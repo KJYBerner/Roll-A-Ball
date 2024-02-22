@@ -7,8 +7,7 @@ public class Rotator : MonoBehaviour
 
     public float speed = 1;
     public Vector3 rotationValue = new Vector3(15, 30, 45);
-    public float up = 1
-    public float down = 1
+   
 
     void Start()
     {
@@ -20,8 +19,7 @@ public class Rotator : MonoBehaviour
     {
         //Rotate this object according to the provided vector3 over time
         transform.Rotate(rotationValue * Time.deltaTime * speed);
-        trasform.position = transform.position + up;
-        transform.position = transform.position - down;
+        
 
         
     }
