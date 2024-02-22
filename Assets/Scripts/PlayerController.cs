@@ -8,8 +8,10 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
     private int pickUpCount;
     private string winCondition;
+    private Timer timer;
 
-    // Start is called before the first frame update
+
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -18,6 +20,11 @@ public class PlayerController : MonoBehaviour
         pickUpCount = GameObject.FindGameObjectsWithTag("Pick Up").Length;
 
         CheckPickUps();
+
+        //Get timer ojbect and start timer
+        timer = FindObjectOfType<Timer>();
+        timer.StartTimer();
+
 
     }
 
@@ -50,6 +57,11 @@ public class PlayerController : MonoBehaviour
         {
             winCondition = "WIN";
             print(winCondition);
+            print("Your time was:" + timer.GetTime());
+
+            //stop timer
+            timer.StopTimer();
+
         }
 
     }
