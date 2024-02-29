@@ -18,6 +18,8 @@ public class Timer : MonoBehaviour
     public void StopTimer()
     {
         isTiming = false;
+        print("timer stopped");
+
 
     }
 
@@ -34,7 +36,7 @@ public class Timer : MonoBehaviour
 
     void Update()
     {
-        if (isTiming == true) ;
+        if (isTiming == true)
         { 
         currentTime += Time.deltaTime;
     }
