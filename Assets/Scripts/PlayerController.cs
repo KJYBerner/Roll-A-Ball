@@ -26,7 +26,14 @@ public class PlayerController : MonoBehaviour
     public GameObject inGamePanel;
     public TMP_Text winTimer;
 
-    
+
+    //reset point
+    GameObject resetPoint;
+    bool resetting = false;
+    Color originalColour;
+
+    //death screen
+    public GameObject deathPanel; 
 
 
     void Start()
@@ -49,6 +56,13 @@ public class PlayerController : MonoBehaviour
         //pause
         Time.timeScale = 1;
 
+        //reset point
+        resetPoint = GameObject.Find("Reset Point"); 
+        originalColour = GetComponent<Renderer>().material.color;
+
+        //deathscreen
+        deathPanel.SetActive(false);
+
     }
 
     private void Update()
@@ -59,6 +73,8 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (resetting)
+            return; 
 
         if (gameOver == true)
         {
@@ -126,7 +142,42 @@ public class PlayerController : MonoBehaviour
 
         
     }
-   
-       
-    
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Respawn"))
+        {
+            StartCoroutine(ResetPlayer());
+            deathPanelToggle();
+
+
+        }
+    }
+
+    public IEnumerator ResetPlayer()
+    {
+        resetting = true;
+        GetComponent<Renderer>().material.color = Color.black;
+        rb.velocity = Vector3.zero;
+        Vector3 startPos = transform.position;
+        float resetSpeed = 2f;
+        var i = 0.0f;
+        var rate = 1.0f / resetSpeed;
+        while(i<1.0f)
+        {
+            i += Time.deltaTime * rate;
+            transform.position = Vector3.Lerp(startPos, resetPoint.transform.position, i);
+            yield return null;
+        }
+        GetComponent<Renderer>().material.color = originalColour;
+        resetting = false;
+
+    }
+
+    public void deathPanelToggle()
+    {
+        deathPanel.SetActive(true);
+    }
+
+
 }
