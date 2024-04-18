@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+
 public class PlayerController : MonoBehaviour
 {
    //Movement
@@ -35,6 +36,11 @@ public class PlayerController : MonoBehaviour
     //death screen
     public GameObject deathPanel; 
 
+    //Controller
+    GameController gameController;
+
+   
+
 
     void Start()
     {
@@ -63,6 +69,11 @@ public class PlayerController : MonoBehaviour
         //deathscreen
         deathPanel.SetActive(false);
 
+        gameController = FindObjectOfType<GameController>();
+        timer = FindObjectOfType<Timer>();
+        if (gameController.gameType == GameType.SpeedRun)
+            StartCoroutine(timer.StartCountdown()); 
+
     }
 
     private void Update()
@@ -86,7 +97,11 @@ public class PlayerController : MonoBehaviour
 
             Vector3 movement = new Vector3(moveHorizontal, 0, moveVertical);
             rb.AddForce(movement * speed);
-        
+
+        if (gameController.gameType == GameType.SpeedRun && !timer.IsTiming())
+            return;
+        if (gameController.controlType == ControlType.WorldTilt)
+            return; 
     }
 
     private void OnTriggerEnter(Collider other)
@@ -140,6 +155,8 @@ public class PlayerController : MonoBehaviour
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
 
+        if(gameController.gameType == GameType.SpeedRun)
+            timer.StopTimer();
         
     }
 

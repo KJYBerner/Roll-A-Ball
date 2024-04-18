@@ -24,6 +24,16 @@ public class SceneController : MonoBehaviour
         SceneManager.LoadScene("Title");
     }
 
+    public void ToLevelSelectScene()
+    {
+        SceneManager.LoadScene("LevelSelect");
+    }
+
+    public void ToLvl1Scene()
+    {
+        SceneManager.LoadScene("Main");
+    }
+
 
     //Gets our active scenes name
     public string GetSceneName()
@@ -45,5 +55,25 @@ public class SceneController : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void ToLevel2Scene()
+    {
+        SceneManager.LoadScene("Lvl 2");
+    }
+
+    public void ToLevel3Scene()
+    {
+        SceneManager.LoadScene("Lvl 3");
+    }
+
+    public void ToLevel4Scene()
+    {
+        SceneManager.LoadScene("Lvl 4");
+    }
+
+    public void ToLevel5Scene()
+    {
+        SceneManager.LoadScene("Lvl 5");
     }
 }
