@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
 {
    //Movement
     public float speed = 1f;
+    [HideInInspector]
+    public float baseSpeed; 
     private Rigidbody rb;
 
     //Pickups
@@ -38,12 +40,15 @@ public class PlayerController : MonoBehaviour
 
     //Controller
     GameController gameController;
+    CameraController cameraController;
 
    
 
 
     void Start()
     {
+        baseSpeed = speed; 
+
         rb = GetComponent<Rigidbody>();
 
         //Number of Pickups
@@ -74,6 +79,8 @@ public class PlayerController : MonoBehaviour
         if (gameController.gameType == GameType.SpeedRun)
             StartCoroutine(timer.StartCountdown()); 
 
+        cameraController = FindObjectOfType<CameraController>();
+
     }
 
     private void Update()
@@ -102,6 +109,13 @@ public class PlayerController : MonoBehaviour
             return;
         if (gameController.controlType == ControlType.WorldTilt)
             return; 
+
+        if(cameraController.cameraStyle == CameraStyle.Free)
+        {
+            transform.eulerAngles = Camera.main.transform.eulerAngles; 
+
+            movement = transform.TransformDirection(movement);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -114,6 +128,12 @@ public class PlayerController : MonoBehaviour
 
             pickUpCount--;
             CheckPickUps();
+        }
+
+        if( other.gameObject.CompareTag("Powerup"))
+        {
+            other.GetComponent<PowerUps>().UsePowerup();
+            other.gameObject.transform.position = Vector3.down * 1000;
         }
     }
 
