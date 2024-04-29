@@ -42,6 +42,9 @@ public class PlayerController : MonoBehaviour
     GameController gameController;
     CameraController cameraController;
 
+    //Booster
+    bool grounded = true;
+
    
 
 
@@ -91,6 +94,15 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        //if (grounded)
+        //{
+            float moveHorizontal = Input.GetAxis("Horizontal");
+            float moveVertical = Input.GetAxis("Vertical");
+
+            Vector3 movement = new Vector3(moveHorizontal, 0, moveVertical);
+            rb.AddForce(movement * speed);
+//}
+
         if (resetting)
             return; 
 
@@ -99,11 +111,7 @@ public class PlayerController : MonoBehaviour
             return;
         }
         
-            float moveHorizontal = Input.GetAxis("Horizontal");
-            float moveVertical = Input.GetAxis("Vertical");
-
-            Vector3 movement = new Vector3(moveHorizontal, 0, moveVertical);
-            rb.AddForce(movement * speed);
+          
 
         if (gameController.gameType == GameType.SpeedRun && !timer.IsTiming())
             return;
@@ -115,6 +123,24 @@ public class PlayerController : MonoBehaviour
             transform.eulerAngles = Camera.main.transform.eulerAngles; 
 
             movement = transform.TransformDirection(movement);
+        }
+
+        
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.collider.CompareTag("Ground"))
+        {
+            grounded = true;
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.collider.CompareTag("Ground"))
+        {
+            grounded = true;
         }
     }
 

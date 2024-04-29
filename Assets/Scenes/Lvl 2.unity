@@ -153,7 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9c0d60526f0c904496458622026532d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
+  speed: 10
 --- !u!54 &13520974
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4551,6 +4551,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 8
+  baseSpeed: 0
   pickUpText: {fileID: 912640968}
   timerText: {fileID: 449434438}
   winPanel: {fileID: 936681108}
@@ -5636,6 +5637,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 897523360}
+  cameraStyle: 0
+  pivot: {fileID: 897523364}
+  rotationSpeed: 1
 --- !u!4 &974307579 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8213557497860480570, guid: a714017a14010104f8f9b9a8e416c3ee, type: 3}
