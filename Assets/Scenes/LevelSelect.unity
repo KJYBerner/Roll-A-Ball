@@ -208,14 +208,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2099907026}
         m_TargetAssemblyTypeName: SceneController, Assembly-CSharp
-        m_MethodName: ToLevel3Scene
-        m_Mode: 1
+        m_MethodName: ChangeScene
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Lvl 3
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &17271956
@@ -1094,14 +1094,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2099907026}
         m_TargetAssemblyTypeName: SceneController, Assembly-CSharp
-        m_MethodName: ToLevel2Scene
-        m_Mode: 1
+        m_MethodName: ChangeScene
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Lvl 2
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1154784745
@@ -1702,14 +1702,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2099907026}
         m_TargetAssemblyTypeName: SceneController, Assembly-CSharp
-        m_MethodName: ToLvl1Scene
-        m_Mode: 1
+        m_MethodName: ChangeScene
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Main
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1645831571

@@ -12,7 +12,7 @@ public class CameraController : MonoBehaviour {
     public Transform pivot;
     public float rotationSpeed = 1f;
 
-   
+    
     private Vector3 pivotOffset; 
 
     void Start()
@@ -26,15 +26,21 @@ public class CameraController : MonoBehaviour {
 
     void Update()
     {
-        //Make the transform position of the camera follow the player's transform position  
-        transform.position = player.transform.position + offset;
+        
     }
 
     private void LateUpdate()
     {
-        if(cameraStyle == CameraStyle.Fixed)
+
+        if( cameraStyle == CameraStyle.Fixed) 
         {
+            //Make the transform position of the camera follow the player's transform position  
             transform.position = player.transform.position + offset;
+
+        }
+        if(cameraStyle == CameraStyle.Free)
+        {
+            pivot.transform.position = player.transform.position + pivotOffset;
 
             Quaternion turnAngle = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * rotationSpeed, Vector3.up);
 

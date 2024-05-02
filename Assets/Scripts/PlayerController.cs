@@ -94,37 +94,38 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        //if (grounded)
-        //{
-            float moveHorizontal = Input.GetAxis("Horizontal");
-            float moveVertical = Input.GetAxis("Vertical");
-
-            Vector3 movement = new Vector3(moveHorizontal, 0, moveVertical);
-            rb.AddForce(movement * speed);
-//}
 
         if (resetting)
-            return; 
+            return;
 
         if (gameOver == true)
         {
             return;
         }
-        
-          
 
         if (gameController.gameType == GameType.SpeedRun && !timer.IsTiming())
             return;
         if (gameController.controlType == ControlType.WorldTilt)
-            return; 
+            return;
 
-        if(cameraController.cameraStyle == CameraStyle.Free)
+        if (grounded)
         {
-            transform.eulerAngles = Camera.main.transform.eulerAngles; 
+            float moveHorizontal = Input.GetAxis("Horizontal");
+            float moveVertical = Input.GetAxis("Vertical");
 
-            movement = transform.TransformDirection(movement);
+            Vector3 movement = new Vector3(moveHorizontal, 0, moveVertical);
+            
+
+            if (cameraController.cameraStyle == CameraStyle.Free)
+            {
+                transform.eulerAngles = Camera.main.transform.eulerAngles;
+
+                movement = transform.TransformDirection(movement);
+            }
+
+            rb.AddForce(movement * speed);
+
         }
-
         
     }
 
